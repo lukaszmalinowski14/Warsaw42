@@ -1,49 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 21:35:18 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/05 20:22:17 by lmalinow         ###   ########.fr       */
+/*   Created: 2024/12/05 20:22:38 by lmalinow          #+#    #+#             */
+/*   Updated: 2024/12/05 20:49:51 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h> // for size_t
 // #include <stdio.h>
 
-void *ft_memchr(const void *s, int c, size_t n)
+int ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char *s_ptr;
-	unsigned char byte;
+	unsigned char *s1_ptr;
+	unsigned char *s2_ptr;
 
-	byte = (unsigned char)c;
-	s_ptr = (unsigned char *)s;
-
+	s1_ptr = (unsigned char *)s1;
+	s2_ptr = (unsigned char *)s2;
 	while (n--)
 	{
-		if (byte == *s_ptr)
-			return ((void *)s_ptr);
-		s_ptr++;
+		if (*s1_ptr != *s2_ptr)
+			return ((int)(*s1_ptr - *s2_ptr));
+		s1_ptr++;
+		s2_ptr++;
 	}
-	return (NULL);
+	return (0);
 }
 
 // int main(void)
 // {
-// 	char str[] = "Hello World";
-// 	char *result;
-
-// 	result = (char *)ft_memchr(str, 'W', 7);
-
-// 	if (result != NULL)
-// 	{
-// 		printf("Found bite: %c on position : %ld\n", *result, result - str);
-// 	}
-// 	else
-// 	{
-// 		printf("bite not found.\n");
-// 	}
+// 	char str1[] = "Hello World";
+// 	char str2[] = "Hewwo World";
+// 	printf("%d \n", ft_memcmp(str1, str2, 10));
 // 	return (0);
 // }
