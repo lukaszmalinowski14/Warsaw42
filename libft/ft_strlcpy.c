@@ -6,13 +6,13 @@
 /*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:20:43 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/04 18:08:16 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/07 13:31:36 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h> // for size_t
 
-size_t static ft_strlen(char *str)
+static size_t ft_strlen(char *str)
 {
 	size_t i = 0;
 	while (str[i])
