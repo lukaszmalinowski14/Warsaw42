@@ -6,11 +6,12 @@
 /*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:20:43 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/07 13:31:36 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/09 20:13:01 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h> // for size_t
+// #include <stdio.h>
 
 static size_t ft_strlen(char *str)
 {
@@ -27,7 +28,7 @@ size_t ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	size_t i;
 	size_t src_len;
 
-	src_len = ft_strlen(src);
+	src_len = ft_strlen((char *)src);
 	i = 0;
 	if (dstsize > 0)
 	{

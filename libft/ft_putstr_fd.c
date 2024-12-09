@@ -1,46 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 19:06:43 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/09 20:10:13 by lmalinow         ###   ########.fr       */
+/*   Created: 2024/12/07 23:03:08 by lmalinow          #+#    #+#             */
+/*   Updated: 2024/12/07 23:19:58 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+// #include <fcntl.h>
 
-char *ft_strchr(const char *s, int c)
+void ft_putstr_fd(char *s, int fd)
 {
-	unsigned char d;
-
-	d = (unsigned char)c;
-	while (*s != '\0')
+	if (!s || fd < 0)
+		return;
+	while (*s)
 	{
-		if (*s == d)
-			return (char *)s;
+		write(fd, s, 1);
 		s++;
 	}
-	if (d == '\0')
-		return (char *)s;
-	return NULL;
 }
 
 // int main(void)
 // {
-// 	const char str[] = "Hello, World!";
-// 	char ch = 'l';
-// 	char *result = ft_strchr(str, ch);
+// 	int fd;
+// 	fd = open("output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+// 	if (fd == -1)
+// 		return (1);
 
-// 	if (result)
-// 	{
-// 		write(1, result, 13); // Wypisze "World!"
-// 		write(1, "\n", 1);
-// 	}
-// 	else
-// 		write(1, "Not found", 9);
+// 	ft_putstr_fd("Hello World!", fd);
+// 	ft_putstr_fd("\n", fd);
 
+// 	close(fd);
 // 	return (0);
 // }

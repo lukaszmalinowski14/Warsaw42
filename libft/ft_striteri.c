@@ -1,46 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 19:06:43 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/09 20:10:13 by lmalinow         ###   ########.fr       */
+/*   Created: 2024/12/07 22:06:20 by lmalinow          #+#    #+#             */
+/*   Updated: 2024/12/07 22:31:48 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
+// #include <stdio.h>
 
-char *ft_strchr(const char *s, int c)
+// static void my_function(unsigned int i, char *c)
+// {
+// 	*c = (*c + i % 26);
+// }
+void ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	unsigned char d;
+	unsigned int i;
 
-	d = (unsigned char)c;
-	while (*s != '\0')
+	if (!s || !f)
+		return;
+	i = 0;
+	while (s[i])
 	{
-		if (*s == d)
-			return (char *)s;
-		s++;
+		f(i, &s[i]);
+		i++;
 	}
-	if (d == '\0')
-		return (char *)s;
-	return NULL;
 }
 
 // int main(void)
 // {
-// 	const char str[] = "Hello, World!";
-// 	char ch = 'l';
-// 	char *result = ft_strchr(str, ch);
-
-// 	if (result)
-// 	{
-// 		write(1, result, 13); // Wypisze "World!"
-// 		write(1, "\n", 1);
-// 	}
-// 	else
-// 		write(1, "Not found", 9);
-
+// 	char s[] = "Hello";
+// 	printf("Original string: %s\n", s);
+// 	ft_striteri(s, my_function);
+// 	printf("Modified string: %s\n", s);
 // 	return (0);
 // }
