@@ -1,43 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 15:17:49 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/12 20:13:29 by lmalinow         ###   ########.fr       */
+/*   Created: 2024/12/12 20:28:48 by lmalinow          #+#    #+#             */
+/*   Updated: 2024/12/12 22:11:52 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h> // for size_t
-// #include <stdio.h>
+#include "libft.h"
 
-void *ft_memset(void *ptr, int value, size_t n)
+t_list *ft_lstnew(void *content)
 {
-	unsigned char *byte_ptr;
-	unsigned char byte_value;
-	size_t i;
+	t_list *new_node;
 
-	byte_ptr = (unsigned char *)ptr;
-	byte_value = (unsigned char)value;
-	i = 0;
-
-	while (i < n)
-	{
-		byte_ptr[i] = byte_value;
-		i++;
-	}
-
-	return (ptr);
+	new_node = malloc(sizeof(t_list));
+	if (!new_node)
+		return (NULL);
+	new_node->content = content;
+	new_node->next = NULL;
+	return (new_node);
 }
-
 // int main(void)
 // {
-// 	char str[] = "Hello World!";
-// 	printf("%s\n", str);
-// 	ft_memset(str, '4', 5);
-// 	printf("%s\n", str);
-
+// 	char *str = "Hello";
+// 	t_list *node1;
+// 	node1 = ft_lstnew(str);
+// 	printf("%s\n", (char *)node1->content);
+// free(node1)
 // 	return (0);
 // }

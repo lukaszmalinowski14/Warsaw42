@@ -6,14 +6,14 @@
 /*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 17:19:39 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/07 17:44:37 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/12 19:57:26 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 // #include <stdio.h>
 
-int len(long nb)
+static int len(long nb)
 {
 	int len = 0;
 	if (nb <= 0)

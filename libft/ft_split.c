@@ -6,7 +6,7 @@
 /*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 14:52:57 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/07 17:08:40 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/12 20:17:15 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int ft_count_strings(char *str, char c)
 	}
 	return (count);
 }
-char *ft_word(char *str, char c)
+static char *ft_word(char *str, char c)
 {
 	size_t len_word;
 	size_t i;

@@ -6,11 +6,12 @@
 /*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:15:27 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/04 15:16:06 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/12 20:09:08 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h> // for size_t
+// #include <stdio.h>
 
 void *ft_memmove(void *dest, const void *src, size_t n)
 {
@@ -40,3 +41,13 @@ void *ft_memmove(void *dest, const void *src, size_t n)
 	}
 	return dest;
 }
+
+// int main(void)
+// {
+// 	char *str = "Hello World!";
+// 	char dest[20];
+// 	size_t n = 7;
+// 	ft_memmove(dest, str, n);
+// 	printf("%s\n", dest);
+// 	return (0);
+// }
