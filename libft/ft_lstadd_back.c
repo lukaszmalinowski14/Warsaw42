@@ -6,7 +6,7 @@
 /*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 20:47:54 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/12 22:35:21 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/13 20:08:22 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 void ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list *temp;
+
+	if (!*lst)
+	{
+		*lst = new;
+		return;
+	}
 
 	temp = *lst;
 	while (temp->next != NULL)
