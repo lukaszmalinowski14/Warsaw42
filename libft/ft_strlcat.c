@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 18:08:36 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/04 18:42:49 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/15 14:07:37 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,40 @@ static size_t ft_strlen(const char *str)
 }
 size_t ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t dst_len;
-	size_t src_len;
 	size_t i;
+	size_t j;
+	size_t dest_length;
+	size_t src_length;
 
-	dst_len = ft_strlen(dst);
-	src_len = ft_strlen(src);
-	if (dstsize <= dst_len)
-		return (dstsize + src_len);
+	// Jeśli dstsize == 0, nie można dodać nic do dst, więc zwróć długość src
+	if (dstsize == 0)
+		return (src ? ft_strlen(src) : 0);
+	if (!dst)
+		*(volatile char *)0 = 0;
+
+	// Jeśli src jest NULL, wywołaj segfault
+	if (!src)
+		*(volatile char *)0 = 0;
+
+	// Jeśli dstsize == 0, zwróć długość src lub 0, jeśli src jest NULL
+
+	src_length = ft_strlen(src);
+	dest_length = ft_strlen(dst);
+	j = dest_length;
 	i = 0;
-	while (i < dstsize - dst_len - 1 && src[i] != '\0')
+	if (dest_length < dstsize - 1 && dstsize > 0)
 	{
-		dst[dst_len + i] = src[i];
-		i++;
+		while (src[i] && dest_length + i < dstsize - 1)
+		{
+			dst[j] = src[i];
+			j++;
+			i++;
+		}
+		dst[j] = 0;
 	}
-	dst[dst_len + i] = '\0';
-	return (dst_len + src_len);
+	if (dest_length >= dstsize)
+		dest_length = dstsize;
+	return (dest_length + src_length);
 }
 
 // int main(void)

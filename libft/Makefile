@@ -17,7 +17,6 @@ ft_memmove.c\
 ft_itoa.c\
 ft_strdup.c\
 ft_memset.c\
-test.c\
 ft_strmapi.c\
 ft_strlen.c\
 ft_toupper.c\
@@ -37,13 +36,18 @@ ft_strchr.c\
 ft_strjoin.c\
 ft_isprint.c\
 ft_isalpha.c\
-ft_bzero.c
+ft_bzero.c\
+ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
+					ft_lstdelone.c ft_lstiter.c ft_lstlast.c \
+					ft_lstmap.c ft_lstnew.c ft_lstsize.c
 
 OBJS = $(SRCS:.c=.o)
 
 BONUS			=	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
 					ft_lstdelone.c ft_lstiter.c ft_lstlast.c \
 					ft_lstmap.c ft_lstnew.c ft_lstsize.c
+
+BONUS_OBJS = $(BONUS:.c=.o)
 
 all: $(NAME)
 
@@ -53,8 +57,12 @@ $(NAME): $(OBJS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+so: $(OBJS)
+	$(CC) -shared -o libft.so $(OBJS)
+
 clean:
 	rm -f $(OBJS)
+	rm -f $(BONUS_OBJS)
 
 fclean: clean
 	rm -f $(NAME)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 20:04:10 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/13 23:43:45 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/15 18:52:06 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,20 @@
 #include <stdio.h>
 #include <string.h>
 #include <strings.h>
+#include <ctype.h>
+#include <fcntl.h>
 
 typedef struct s_list
 {
 	void *content;
 	struct s_list *next;
 } t_list;
+
+typedef struct s_split_next
+{
+	size_t start;
+	size_t length;
+} t_split_next;
 
 int ft_atoi(const char *str);
 void ft_bzero(void *s, size_t n);

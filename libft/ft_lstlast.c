@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 21:48:41 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/12 22:11:49 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/15 14:20:02 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 t_list *ft_lstlast(t_list *lst)
 {
+	if (lst == NULL)
+		return NULL;
 	while (lst->next != NULL)
 	{
 		lst = lst->next;
 	}
-	return (lst);
+	return lst;
 }
 
 // int main(void)

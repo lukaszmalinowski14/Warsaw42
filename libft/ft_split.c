@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 14:52:57 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/12 20:17:15 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/15 13:15:31 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,19 +99,3 @@ char **ft_split(char const *s, char c)
 
 	return (strings);
 }
-
-// int main(void)
-// {
-// 	char **words;
-// 	char *s1 = "Hello#World#Bis!";
-// 	words = ft_split(s1, '#');
-// 	int i = 0;
-// 	while (words[i])
-// 	{
-// 		printf("%s\n", words[i]);
-// 		free(words[i]); // Uwalnianie pamięci dla każdego słowa
-// 		i++;
-// 	}
-// 	free(words); // Uwalnianie pamięci dla tablicy wskaźników
-// 	return (0);
-// }
