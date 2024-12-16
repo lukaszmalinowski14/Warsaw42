@@ -6,7 +6,7 @@
 /*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 20:39:39 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/16 18:09:27 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/16 22:26:32 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,37 @@ static size_t	ft_strlen(char *str)
 	return (len);
 }
 
+static void	*ft_memcpy(void *dest, const void *src, size_t len)
+{
+	size_t i;
+
+	if (dest == NULL && src == NULL && len != 0)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+		i++;
+	}
+	return (dest);
+}
+
 char	*ft_strjoin(const char *s1, const char *s2)
 {
 	size_t	len_s1;
 	size_t	len_s2;
 	char	*new_str;
-	size_t	i;
 
+	if(s1 == NULL || s2 == NULL)
+		return (NULL);
 	len_s1 = ft_strlen((char *)s1);
 	len_s2 = ft_strlen((char *)s2);
 	new_str = malloc((len_s1 + len_s2 + 1) * sizeof(char));
-	if (!new_str)
-		return (NULL);
-	i = 0;
-	while (i < (len_s1))
+	if (new_str != NULL)
 	{
-		new_str[i] = s1[i];
-		i++;
+		ft_memcpy(new_str, s1, len_s1);
+		ft_memcpy(new_str + len_s1, s2, len_s2);
+		new_str[len_s1 + len_s2] = '\0';
 	}
-	while ((i - len_s1) < len_s2)
-	{
-		new_str[i] = s2[i - len_s1];
-		i++;
-	}
-	new_str[i] = '\0';
 	return (new_str);
 }

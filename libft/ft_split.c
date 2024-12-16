@@ -6,111 +6,111 @@
 /*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 14:52:57 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/16 18:31:56 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/16 23:26:07 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-static void	ft_freeup(char *strs)
+static void *ft_memcpy(void *dest, const void *src, size_t n)
 {
-	int	i;
+	size_t i;
 
+	if (!dest && !src)
+		return (NULL);
 	i = 0;
-	while (strs[i] != '\0')
+	while (i < n)
 	{
-		free(strs);
+		*(char *)(dest + i) = *(char *)(src + i);
 		i++;
 	}
-	free(strs);
+	return (dest);
 }
 
-static int	ft_wordcount(char *str, char c)
+static char **free_splits(char **split, size_t n)
 {
-	int	i;
-	int	word;
+	size_t i;
 
+	if (split != NULL)
+	{
+		i = 0;
+		while (i < n)
+		{
+			if (split[i] != NULL)
+				free(split[i]);
+			i++;
+		}
+		free(split);
+	}
+	return (NULL);
+}
+
+static size_t count_splits(const char *str, char c)
+{
+	size_t result;
+	size_t i;
+
+	result = 0;
 	i = 0;
-	word = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] != c)
-		{
-			word++;
-			while (str[i] != c && str[i] != '\0')
-				i++;
-			if (str[i] == '\0')
-				return (word);
-		}
+		if (str[i] != c && (i == 0 || str[i - 1] == c))
+			result++;
 		i++;
 	}
-	return (word);
+	return (result);
 }
 
-static void	ft_strcpy(char *word, char *str, char c, int j)
+static size_t get_split_len(char *str, char c)
 {
-	int	i;
+	size_t len;
 
-	i = 0;
-	while (str[j] != '\0' && str[j] == c)
-		j++;
-	while (str[j + i] != c && str[j + i] != '\0')
-	{
-		word[i] = str[j + i];
-		i++;
-	}
-	word[i] = '\0';
+	len = 0;
+	while (str[len] != '\0' && str[len] != c)
+		len++;
+	return (len);
 }
 
-static char	*ft_stralloc(char *str, char c, int *k)
+static char *get_split(const char *str, size_t *pos, char c)
 {
-	char	*word;
-	int		j;
+	char *result;
+	size_t result_l;
 
-	j = *k;
-	word = NULL;
-	while (str[*k] != '\0')
-	{
-		if (str[*k] != c)
-		{
-			while (str[*k] != '\0' && str[*k] != c)
-				*k += 1;
-			word = (char *)malloc(sizeof(char) * (*k + 1));
-			if (word == NULL)
-				return (NULL);
-			break ;
-		}
-		*k += 1;
-	}
-	ft_strcpy(word, str, c, j);
-	return (word);
+	while (str[*pos] == c)
+		(*pos)++;
+	result_l = get_split_len((char *)str + *pos, c);
+	result = (char *)malloc(sizeof(char) * (result_l + 1));
+	if (result == NULL)
+		return (NULL);
+	ft_memcpy(result, (char *)str + *pos, result_l);
+	result[result_l] = '\0';
+	*pos += result_l;
+	return (result);
 }
 
-char	**ft_split(char const *str, char c)
+char **ft_split(const char *str, char c)
 {
-	char	**strs;
-	int		i;
-	int		j;
-	int		pos;
+	char **split;
+	size_t split_n;
+	size_t i;
+	size_t pos;
 
 	if (str == NULL)
 		return (NULL);
+	split_n = count_splits(str, c);
+	split = (char **)malloc(sizeof(char *) * (split_n + 1));
+	if (split == NULL)
+		return (NULL);
 	i = 0;
 	pos = 0;
-	j = ft_wordcount((char *)str, c);
-	strs = (char **)malloc(sizeof(char *) * (j + 1));
-	if (strs == NULL)
-		return (NULL);
-	strs[j] = NULL;
-	while (i < j)
+	while (i < split_n)
 	{
-		strs[i] = ft_stralloc(((char *)str), c, &pos);
-		if (strs[i] == NULL)
-		{
-			ft_freeup(strs[i]);
-		}
+		split[i] = get_split(str, &pos, c);
+		if (split[i] == NULL)
+			return (free_splits(split, i));
 		i++;
 	}
-	return (strs);
+	split[split_n] = NULL;
+	return (split);
 }
