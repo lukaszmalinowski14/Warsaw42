@@ -3,26 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 22:06:20 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/07 22:31:48 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:08:41 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-// #include <stdio.h>
 
-// static void my_function(unsigned int i, char *c)
-// {
-// 	*c = (*c + i % 26);
-// }
-void ft_striteri(char *s, void (*f)(unsigned int, char *))
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	unsigned int i;
+	unsigned int	i;
 
 	if (!s || !f)
-		return;
+		return ;
 	i = 0;
 	while (s[i])
 	{
@@ -30,12 +25,3 @@ void ft_striteri(char *s, void (*f)(unsigned int, char *))
 		i++;
 	}
 }
-
-// int main(void)
-// {
-// 	char s[] = "Hello";
-// 	printf("Original string: %s\n", s);
-// 	ft_striteri(s, my_function);
-// 	printf("Modified string: %s\n", s);
-// 	return (0);
-// }

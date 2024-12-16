@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 18:53:33 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/04 19:06:19 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:28:23 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_tolower(int c)
+int	ft_tolower(int c)
 {
 	if (c >= 65 && c <= 90)
 	{

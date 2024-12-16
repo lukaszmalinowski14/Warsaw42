@@ -2,7 +2,7 @@ NAME = libft.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS=ft_tolower.c\
+SRCS = ft_tolower.c\
 ft_putstr_fd.c\
 ft_putnbr_fd.c\
 ft_strncmp.c\
@@ -35,40 +35,49 @@ ft_strchr.c\
 ft_strjoin.c\
 ft_isprint.c\
 ft_isalpha.c\
-ft_bzero.c\
+ft_bzero.c
 
 OBJS = $(SRCS:.c=.o)
 
-BONUS=ft_lstadd_back.c\
+BONUS = ft_lstadd_back.c\
 ft_lstadd_front.c\
 ft_lstclear.c\
 ft_lstdelone.c\
 ft_lstiter.c\
 ft_lstlast.c\
-ft_lstmap.c\
 ft_lstnew.c\
-ft_lstsize.c\
+ft_lstsize.c
 
 BONUS_OBJS = $(BONUS:.c=.o)
 
+# Default target to build the static library
 all: $(NAME)
 
+# Rule to build the static library from the object files
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
+# Rule to build object files from source files
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+# Rule to build the shared library
+# so: $(SRCS:.c=.o)
+# 	$(CC) -shared -o libft.so $(SRCS:.c=.o)
+
+# Clean up object files
 clean:
-	rm -f $(OBJS)
-	rm -f $(BONUS_OBJS)
+	rm -f $(OBJS) $(BONUS_OBJS)
 
+# Clean up object files and the static library
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) libft.so libft.o
 
+# Rebuild everything
 re: fclean all
 
-bonus:	$(OBJS) $(BONUS_OBJS)
-		ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+# Build the library with bonus files included
+bonus: $(OBJS) $(BONUS_OBJS)
+	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus so

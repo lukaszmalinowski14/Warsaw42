@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:20:43 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/09 20:13:01 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:22:42 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h> // for size_t
-// #include <stdio.h>
+#include <stddef.h>
 
-static size_t ft_strlen(char *str)
+static size_t	ft_strlen(char *str)
 {
-	size_t i = 0;
+	size_t	i;
+
+	i = 0;
 	while (str[i])
 	{
 		i++;
@@ -23,10 +24,10 @@ static size_t ft_strlen(char *str)
 	return (i);
 }
 
-size_t ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t i;
-	size_t src_len;
+	size_t	i;
+	size_t	src_len;
 
 	src_len = ft_strlen((char *)src);
 	i = 0;
@@ -41,17 +42,3 @@ size_t ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	}
 	return (src_len);
 }
-
-// int main(void)
-// {
-// 	char src[] = "Hello, World!";
-// 	char dst[8]; // Mały bufor
-
-// 	size_t copied = ft_strlcpy(dst, src, sizeof(dst));
-
-// 	printf("Source: %s\n", src);
-// 	printf("dest: %s\n", dst);
-// 	printf("dst len: %zu\n", copied);
-
-// 	return 0;
-// }

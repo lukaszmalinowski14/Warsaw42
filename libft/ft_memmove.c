@@ -3,32 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:15:27 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/12 20:09:08 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:42:23 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h> // for size_t
-// #include <stdio.h>
+#include <stddef.h>
 
-void *ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned char *dest_ptr = (unsigned char *)dest;
-	const unsigned char *src_ptr = (const unsigned char *)src;
-	size_t i;
+	unsigned char		*dest_ptr;
+	const unsigned char	*src_ptr;
+	size_t				i;
 
-	if (dest_ptr == src_ptr)
-		return (dest);
+	if (!dest && !src)
+		return (NULL);
+	dest_ptr = (unsigned char *)dest;
+	src_ptr = (const unsigned char *)src;
 	if (dest_ptr > src_ptr)
 	{
-		i = n;
-		while (i > 0)
-		{
-			dest_ptr[i - 1] = src_ptr[i - 1];
-			i--;
-		}
+		while (n--)
+			dest_ptr[n] = src_ptr[n];
 	}
 	else
 	{
@@ -39,15 +36,5 @@ void *ft_memmove(void *dest, const void *src, size_t n)
 			i++;
 		}
 	}
-	return dest;
+	return (dest);
 }
-
-// int main(void)
-// {
-// 	char *str = "Hello World!";
-// 	char dest[20];
-// 	size_t n = 7;
-// 	ft_memmove(dest, str, n);
-// 	printf("%s\n", dest);
-// 	return (0);
-// }

@@ -3,25 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:04:17 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/06 19:19:41 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:29:00 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stdio.h>
-// #include <stdlib.h>
-
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int result;
-	int sign;
+	int	result;
+	int	sign;
 
 	sign = 1;
 	result = 0;
-	while (*str == ' ' || *str == '\t' || *str == '\n' ||
-		   *str == '\v' || *str == '\f' || *str == '\r')
+	while (*str == ' ' || *str == '\t' || *str == '\n'
+		|| *str == '\v' || *str == '\f' || *str == '\r')
 	{
 		str++;
 	}
@@ -40,11 +37,3 @@ int ft_atoi(const char *str)
 	}
 	return (result * sign);
 }
-
-// int main(void)
-// {
-// 	char *str = "   -345345";
-// 	printf("%d\n", ft_atoi(str));
-// 	printf("%d\n", atoi(str));
-// 	return (0);
-// }

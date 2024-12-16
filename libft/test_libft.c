@@ -6,7 +6,7 @@
 /*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 20:19:36 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/15 22:18:24 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/16 19:06:49 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,19 +181,67 @@
 // }
 
 // ##################################################################
-// The memmove() function copies n bytes from memory area src to memory area dest. The memory areas may overlap
+// The ft_memmove() function copies n bytes from memory area src to memory area dest. The memory areas may overlap
 // test ft_memmove
-// int main(void)
+// void test_memmove()
 // {
-// 	char src[40] = "Hello World! This is a test message.";
-// 	size_t n = 12;
-// 	size_t start_pos = 6;
-// 	printf("Before ft_memmove: %s\n", src);
+//     char src1[50] = "Hello, World! This is a test for ft_memmove.";
+//     char dest1[50];
+//     char dest2[50];
+// 	memset(dest1,'0',sizeof(dest1));
+// 	memset(dest2,'0',sizeof(dest1));
 
-// 	memmove(src + start_pos, src, n); // Kopiowanie do 7. znaku w src
+//     // Test 1: Normal copy
+//     printf("Test 1: Normal copy\n");
+//     ft_memmove(dest1, src1, 13);
+//     memmove(dest2, src1, 13);
+//     printf("ft_memmove: %s\n", dest1);
+//     printf("memmove   : %s\n", dest2);
+//     printf("Comparison: %s\n\n", strcmp(dest1, dest2) == 0 ? "OK" : "FAILED");
 
-// 	printf("After ft_memmove: %s\n", src);
-// 	return (0);
+//     // Test 2: Overlapping regions (dest > src)
+//     printf("Test 2: Overlapping regions (dest > src)\n");
+//     char overlap1[50] = "Hello, Overlapping memory regions!";
+//     char overlap2[50] = "Hello, Overlapping memory regions!";
+//     ft_memmove(overlap1 + 7, overlap1, 10);
+//     memmove(overlap2 + 7, overlap2, 10);
+//     printf("ft_memmove: %s\n", overlap1);
+//     printf("memmove   : %s\n", overlap2);
+//     printf("Comparison: %s\n\n", strcmp(overlap1, overlap2) == 0 ? "OK" : "FAILED");
+
+//     // Test 3: Overlapping regions (src > dest)
+//     printf("Test 3: Overlapping regions (src > dest)\n");
+//     char overlap3[50] = "Hello, Overlapping memory regions!";
+//     char overlap4[50] = "Hello, Overlapping memory regions!";
+//     ft_memmove(overlap3, overlap3 + 7, 10);
+//     memmove(overlap4, overlap4 + 7, 10);
+//     printf("ft_memmove: %s\n", overlap3);
+//     printf("memmove   : %s\n", overlap4);
+//     printf("Comparison: %s\n\n", strcmp(overlap3, overlap4) == 0 ? "OK" : "FAILED");
+
+//     // Test 4: N = 0 (no bytes should be copied)
+//     printf("Test 4: N = 0\n");
+//     char empty1[50] = "Nothing changes here.";
+//     char empty2[50] = "Nothing changes here.";
+//     ft_memmove(empty1, empty1 + 5, 0);
+//     memmove(empty2, empty2 + 5, 0);
+//     printf("ft_memmove: %s\n", empty1);
+//     printf("memmove   : %s\n", empty2);
+//     printf("Comparison: %s\n\n", strcmp(empty1, empty2) == 0 ? "OK" : "FAILED");
+
+//     // // Test 5: NULL as argument
+//     // printf("Test 5: NULL as argument\n");
+//     // char *null_result1 = ft_memmove(NULL, src1, 5);
+//     // char *null_result2 = memmove(NULL, src1, 5); // Warning: May cause a crash in built-in memmove.
+//     // printf("ft_memmove: %s\n", null_result1 == NULL ? "NULL" : "Not NULL");
+//     // printf("memmove   : %s\n", null_result2 == NULL ? "NULL" : "Not NULL");
+//     // printf("Comparison: %s\n\n", null_result1 == null_result2 ? "OK" : "FAILED");
+// }
+
+// int main()
+// {
+//     test_memmove();
+//     return 0;
 // }
 
 // ##################################################################
@@ -515,31 +563,34 @@
 // ft_substr Allocates (with malloc(3)) and returns a substring
 // from the string ’s’.The substring begins at index ’start’ and is of
 // 	maximum size ’len’.
-// int main(void)
-// {
-// 	// Test 1: Podciąg zaczynający się od początku ciągu
-// 	char *s1 = "Hello World!";
-// 	char *sub1 = ft_substr(s1, 0, 5);
-// 	printf("Test 1: '%s'\n", sub1); // expected: "Hello"
-// 	free(sub1);
+int main(void)
+{
+	// Test 1: Podciąg zaczynający się od początku ciągu
+	char *s1 = "Hello World!";
+	char *sub1 = ft_substr(s1, 0, 5);
+	printf("Test 1: '%s'\n", sub1); // expected: "Hello"
+	free(sub1);
 
-// 	// Test 2: Podciąg zaczynający się od środka ciągu
-// 	char *sub2 = ft_substr(s1, 6, 5);
-// 	printf("Test 2: '%s'\n", sub2); // Oczekiwany wynik: "World"
-// 	free(sub2);
+	// Test 2: Podciąg zaczynający się od środka ciągu
+	char *sub2 = ft_substr(s1, 6, 5);
+	printf("Test 2: '%s'\n", sub2); // Oczekiwany wynik: "World"
+	free(sub2);
 
-// 	// Test 3: Podciąg, gdzie start jest większy niż długość ciągu
-// 	char *sub3 = ft_substr(s1, 15, 5);
-// 	printf("Test 3: '%s'\n", sub3); // Oczekiwany wynik: ""
-// 	free(sub3);
+	// Test 3: Podciąg, gdzie start jest większy niż długość ciągu
+	char *sub3 = ft_substr(s1, 15, 5);
+	printf("Test 3: '%s'\n", sub3); // Oczekiwany wynik: ""
+	free(sub3);
 
-// 	// Test 4: Podciąg, gdzie długość jest większa niż dostępna długość w ciągu
-// 	char *sub4 = ft_substr(s1, 6, 20);
-// 	printf("Test 4: '%s'\n", sub4); // Oczekiwany wynik: "World!"
-// 	free(sub4);
+	// Test 4: Podciąg, gdzie długość jest większa niż dostępna długość w ciągu
+	char *sub4 = ft_substr(s1, 6, 20);
+	printf("Test 4: '%s'\n", sub4); // Oczekiwany wynik: "World!"
+	free(sub4);
 
-// 	return 0;
-// }
+	char *sub5=ft_substr("HOLA MUNDO", 8, 5);
+	printf("Test 4: '%s'\n", sub5); // Oczekiwany wynik: "World!"
+
+	return 0;
+}
 // ##############################################################
 // ft_strjoin
 // Allocates (with malloc(3)) and returns a new
@@ -689,23 +740,10 @@
 // 	free(result5);
 
 // 	// Test 6: 00 at the begining
-// 	int n6 = 0001234;
+// 	int n6 = 1234;
 // 	char *result6 = ft_itoa(n6);
 // 	printf("Test 6: %s (Expected:: 1234)\n", result6);
 // 	free(result6);
-
-// 	// Test 7: NULL
-// 	int n7 = 12345;
-// 	char *result7 = ft_itoa(n7);
-// 	if (result7 == NULL)
-// 	{
-// 		printf("Test 7: Zwrócono NULL (Expected:: NULL)\n");
-// 	}
-// 	else
-// 	{
-// 		printf("Test 7: Wynik = %s\n", result7);
-// 		free(result7);
-// 	}
 // }
 // ######################################################
 //  ft_strmapi
@@ -1397,145 +1435,145 @@
 // ’f’ on the content of each node.Creates a new list resulting of the successive applications of
 // 	the function ’f’.The ’del’ function is used to delete the content of a node if needed.
 // Helper function to apply to each node's content (creates a new string with uppercase content)
-void *duplicate_uppercase_content(void *content)
-{
-	if (!content)
-		return NULL;
+// void *duplicate_uppercase_content(void *content)
+// {
+// 	if (!content)
+// 		return NULL;
 
-	char *str = (char *)content;
-	char *new_str = strdup(str);
-	if (!new_str)
-		return NULL;
+// 	char *str = (char *)content;
+// 	char *new_str = strdup(str);
+// 	if (!new_str)
+// 		return NULL;
 
-	for (int i = 0; new_str[i]; i++)
-	{
-		if (new_str[i] >= 'a' && new_str[i] <= 'z')
-			new_str[i] -= 32; // Convert to uppercase
-	}
-	return new_str;
-}
+// 	for (int i = 0; new_str[i]; i++)
+// 	{
+// 		if (new_str[i] >= 'a' && new_str[i] <= 'z')
+// 			new_str[i] -= 32; // Convert to uppercase
+// 	}
+// 	return new_str;
+// }
 
-// Helper function to free node content
-void free_content(void *content)
-{
-	free(content);
-}
+// // Helper function to free node content
+// void free_content(void *content)
+// {
+// 	free(content);
+// }
 
-// Test 1: Map a function over a list with multiple nodes
-void test_ft_lstmap_multiple_nodes(void)
-{
-	printf("Test 1: Map a function over a list with multiple nodes\n");
+// // Test 1: Map a function over a list with multiple nodes
+// void test_ft_lstmap_multiple_nodes(void)
+// {
+// 	printf("Test 1: Map a function over a list with multiple nodes\n");
 
-	t_list *node1 = ft_lstnew(strdup("node 1"));
-	t_list *node2 = ft_lstnew(strdup("node 2"));
-	t_list *node3 = ft_lstnew(strdup("node 3"));
+// 	t_list *node1 = ft_lstnew(strdup("node 1"));
+// 	t_list *node2 = ft_lstnew(strdup("node 2"));
+// 	t_list *node3 = ft_lstnew(strdup("node 3"));
 
-	node1->next = node2;
-	node2->next = node3;
+// 	node1->next = node2;
+// 	node2->next = node3;
 
-	t_list *new_list = ft_lstmap(node1, duplicate_uppercase_content, free_content);
+// 	t_list *new_list = ft_lstmap(node1, duplicate_uppercase_content, free_content);
 
-	// Verify the new list
-	t_list *current = new_list;
-	while (current)
-	{
-		printf("Mapped content: %s\n", (char *)current->content);
-		current = current->next;
-	}
+// 	// Verify the new list
+// 	t_list *current = new_list;
+// 	while (current)
+// 	{
+// 		printf("Mapped content: %s\n", (char *)current->content);
+// 		current = current->next;
+// 	}
 
-	// Free both lists
-	ft_lstclear(&node1, free_content);
-	ft_lstclear(&new_list, free_content);
-}
+// 	// Free both lists
+// 	ft_lstclear(&node1, free_content);
+// 	ft_lstclear(&new_list, free_content);
+// }
 
-// Test 2: Map a function over an empty list
-void test_ft_lstmap_empty_list(void)
-{
-	printf("Test 2: Map a function over an empty list\n");
+// // Test 2: Map a function over an empty list
+// void test_ft_lstmap_empty_list(void)
+// {
+// 	printf("Test 2: Map a function over an empty list\n");
 
-	t_list *empty_list = NULL;
+// 	t_list *empty_list = NULL;
 
-	t_list *new_list = ft_lstmap(empty_list, duplicate_uppercase_content, free_content);
+// 	t_list *new_list = ft_lstmap(empty_list, duplicate_uppercase_content, free_content);
 
-	if (new_list == NULL)
-		printf("Test 2: PASSED (Returned NULL for empty list)\n");
-	else
-		printf("Test 2: FAILED\n");
-}
+// 	if (new_list == NULL)
+// 		printf("Test 2: PASSED (Returned NULL for empty list)\n");
+// 	else
+// 		printf("Test 2: FAILED\n");
+// }
 
-// Test 3: Map a function where memory allocation fails
-void test_ft_lstmap_allocation_failure(void)
-{
-	printf("Test 3: Map a function where memory allocation fails\n");
+// // Test 3: Map a function where memory allocation fails
+// void test_ft_lstmap_allocation_failure(void)
+// {
+// 	printf("Test 3: Map a function where memory allocation fails\n");
 
-	// Mock a function that always returns NULL
-	void *mock_failure_function(void *content)
-	{
-		(void)content;
-		return NULL;
-	}
+// 	// Mock a function that always returns NULL
+// 	void *mock_failure_function(void *content)
+// 	{
+// 		(void)content;
+// 		return NULL;
+// 	}
 
-	t_list *node1 = ft_lstnew(strdup("node 1"));
-	t_list *node2 = ft_lstnew(strdup("node 2"));
+// 	t_list *node1 = ft_lstnew(strdup("node 1"));
+// 	t_list *node2 = ft_lstnew(strdup("node 2"));
 
-	node1->next = node2;
+// 	node1->next = node2;
 
-	t_list *new_list = ft_lstmap(node1, mock_failure_function, free_content);
+// 	t_list *new_list = ft_lstmap(node1, mock_failure_function, free_content);
 
-	if (new_list == NULL)
-		printf("Test 3: PASSED (Returned NULL on allocation failure)\n");
-	else
-		printf("Test 3: FAILED\n");
+// 	if (new_list == NULL)
+// 		printf("Test 3: PASSED (Returned NULL on allocation failure)\n");
+// 	else
+// 		printf("Test 3: FAILED\n");
 
-	// Free original list
-	ft_lstclear(&node1, free_content);
-}
+// 	// Free original list
+// 	ft_lstclear(&node1, free_content);
+// }
 
-// Test 4: Map a function over a single-node list
-void test_ft_lstmap_single_node(void)
-{
-	printf("Test 4: Map a function over a single-node list\n");
+// // Test 4: Map a function over a single-node list
+// void test_ft_lstmap_single_node(void)
+// {
+// 	printf("Test 4: Map a function over a single-node list\n");
 
-	t_list *node = ft_lstnew(strdup("single node"));
+// 	t_list *node = ft_lstnew(strdup("single node"));
 
-	t_list *new_list = ft_lstmap(node, duplicate_uppercase_content, free_content);
+// 	t_list *new_list = ft_lstmap(node, duplicate_uppercase_content, free_content);
 
-	// Verify the new list
-	if (new_list != NULL && new_list->content != NULL)
-		printf("Mapped content: %s\n", (char *)new_list->content);
+// 	// Verify the new list
+// 	if (new_list != NULL && new_list->content != NULL)
+// 		printf("Mapped content: %s\n", (char *)new_list->content);
 
-	// Free both lists
-	ft_lstclear(&node, free_content);
-	ft_lstclear(&new_list, free_content);
-}
+// 	// Free both lists
+// 	ft_lstclear(&node, free_content);
+// 	ft_lstclear(&new_list, free_content);
+// }
 
-// Test 5: Handle NULL function pointer for `f`
-void test_ft_lstmap_null_function(void)
-{
-	printf("Test 5: Handle NULL function pointer for `f`\n");
+// // Test 5: Handle NULL function pointer for `f`
+// void test_ft_lstmap_null_function(void)
+// {
+// 	printf("Test 5: Handle NULL function pointer for `f`\n");
 
-	t_list *node1 = ft_lstnew(strdup("node"));
+// 	t_list *node1 = ft_lstnew(strdup("node"));
 
-	t_list *new_list = ft_lstmap(node1, NULL, free_content);
+// 	t_list *new_list = ft_lstmap(node1, NULL, free_content);
 
-	if (new_list == NULL)
-		printf("Test 5: PASSED (Returned NULL when `f` is NULL)\n");
-	else
-		printf("Test 5: FAILED\n");
+// 	if (new_list == NULL)
+// 		printf("Test 5: PASSED (Returned NULL when `f` is NULL)\n");
+// 	else
+// 		printf("Test 5: FAILED\n");
 
-	// Free original list
-	ft_lstclear(&node1, free_content);
-}
+// 	// Free original list
+// 	ft_lstclear(&node1, free_content);
+// }
 
-int main(void)
-{
-	printf("Testing ft_lstmap:\n");
+// int main(void)
+// {
+// 	printf("Testing ft_lstmap:\n");
 
-	test_ft_lstmap_multiple_nodes();
-	test_ft_lstmap_empty_list();
-	test_ft_lstmap_allocation_failure();
-	test_ft_lstmap_single_node();
-	test_ft_lstmap_null_function();
+// 	test_ft_lstmap_multiple_nodes();
+// 	test_ft_lstmap_empty_list();
+// 	test_ft_lstmap_allocation_failure();
+// 	test_ft_lstmap_single_node();
+// 	test_ft_lstmap_null_function();
 
-	return 0;
-}
+// 	return 0;
+// }

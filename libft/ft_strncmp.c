@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:14:36 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/07 14:44:38 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:24:17 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h> // for size_t
-// #include <stdio.h>
+#include <stddef.h>
 
-int ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	while (n > 0 && *s1 && *s2 && *(unsigned char *)s1 == *(unsigned char *)s2)
 	{
@@ -25,11 +24,3 @@ int ft_strncmp(const char *s1, const char *s2, size_t n)
 		return (0);
 	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }
-
-// int main(void)
-// {
-// 	char *str1 = "Hello World!";
-// 	char *str2 = "Hewlo World!";
-// 	printf("%d \n", ft_strncmp(str1, str2, 6));
-// 	return (0);
-// }

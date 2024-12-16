@@ -6,7 +6,7 @@
 /*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 20:04:10 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/15 18:52:06 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:02:52 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,5 @@ void ft_lstadd_back(t_list **lst, t_list *new);
 void ft_lstdelone(t_list *lst, void (*del)(void *));
 void ft_lstclear(t_list **lst, void (*del)(void *));
 void ft_lstiter(t_list *lst, void (*f)(void *));
-t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 #endif

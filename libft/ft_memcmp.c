@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:22:38 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/05 20:49:51 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:15:01 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h> // for size_t
-// #include <stdio.h>
+#include <stddef.h>
 
-int ft_memcmp(const void *s1, const void *s2, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char *s1_ptr;
-	unsigned char *s2_ptr;
+	unsigned char	*s1_ptr;
+	unsigned char	*s2_ptr;
 
 	s1_ptr = (unsigned char *)s1;
 	s2_ptr = (unsigned char *)s2;
@@ -29,11 +28,3 @@ int ft_memcmp(const void *s1, const void *s2, size_t n)
 	}
 	return (0);
 }
-
-// int main(void)
-// {
-// 	char str1[] = "Hello World";
-// 	char str2[] = "Hewwo World";
-// 	printf("%d \n", ft_memcmp(str1, str2, 10));
-// 	return (0);
-// }

@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 18:43:15 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/04 18:53:19 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:33:55 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <unistd.h>
-
-int ft_toupper(int c)
+int	ft_toupper(int c)
 {
 	if (c >= 97 && c <= 122)
 	{
@@ -20,12 +18,3 @@ int ft_toupper(int c)
 	}
 	return (c);
 }
-
-// int main(void)
-// {
-// 	int a = 'Z';
-// 	char b = (char)ft_toupper(a);
-// 	write(1, &b, 1);
-
-// 	return (0);
-// }

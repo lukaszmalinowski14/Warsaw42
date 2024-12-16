@@ -3,64 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 17:19:39 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/12 19:57:26 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:30:08 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-// #include <stdio.h>
 
-static int len(long nb)
+static int	len(long nb)
 {
-	int len = 0;
-	if (nb <= 0)
-	{
-		nb *= -1;
-		len++;
-	}
-	while (nb > 0)
+	int	i;
+
+	i = (nb <= 0);
+	while (nb)
 	{
 		nb /= 10;
-		len++;
+		i++;
 	}
-	return (len);
+	return (i);
 }
-char *ft_itoa(int n)
+
+char	*ft_itoa(int n)
 {
-	char *str;
-	int i;
-	long nb;
+	char	*str;
+	long	nb;
+	int		i;
 
 	nb = n;
 	i = len(nb);
-	if (!(str = (char *)malloc(i + 1)))
+	str = (char *)malloc(i + 1);
+	if (!str)
 		return (NULL);
 	str[i--] = '\0';
-	if (nb == 0)
-	{
-		str[0] = 48;
-		return (str);
-	}
 	if (nb < 0)
 	{
 		str[0] = '-';
-		nb *= -1;
+		nb = -nb;
 	}
-	while (nb > 0)
+	while (i >= 0 && nb > 0)
 	{
-		str[i] = 48 + (nb % 10);
+		str[i--] = '0' + (nb % 10);
 		nb /= 10;
-		i--;
 	}
+	if (n == 0)
+		str[0] = '0';
 	return (str);
 }
-
-// int main(void)
-// {
-// 	int e = -1;
-// 	printf("%s\n", ft_itoa(e));
-// 	return (0);
-// }

@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmalinow <lmalinow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 23:20:15 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/09 19:48:49 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:44:24 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-// #include <fcntl.h>
 
-void ft_putendl_fd(char *s, int fd)
+void	ft_putendl_fd(char *s, int fd)
 {
 	if (!s || fd < 0)
-		return;
+		return ;
 	while (*s)
 	{
 		write(fd, s, 1);
@@ -24,14 +23,3 @@ void ft_putendl_fd(char *s, int fd)
 	}
 	write(fd, "\n", 1);
 }
-// int main(void)
-// {
-// 	int fd;
-
-// 	fd = open("output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-// 	if (fd == -1)
-// 		return (1);
-// 	ft_putendl_fd("Hello World!", fd);
-// 	close(fd);
-// 	return (0);
-// }
