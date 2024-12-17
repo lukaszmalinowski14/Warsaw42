@@ -6,7 +6,7 @@
 /*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 20:39:39 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/16 22:26:32 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:16:46 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static size_t	ft_strlen(char *str)
 
 static void	*ft_memcpy(void *dest, const void *src, size_t len)
 {
-	size_t i;
+	size_t	i;
 
 	if (dest == NULL && src == NULL && len != 0)
 		return (NULL);
@@ -44,7 +44,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	size_t	len_s2;
 	char	*new_str;
 
-	if(s1 == NULL || s2 == NULL)
+	if (s1 == NULL || s2 == NULL)
 		return (NULL);
 	len_s1 = ft_strlen((char *)s1);
 	len_s2 = ft_strlen((char *)s2);

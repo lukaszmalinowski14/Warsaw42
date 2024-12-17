@@ -6,7 +6,7 @@
 /*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 20:21:04 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/16 22:19:04 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/17 14:50:26 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ static char	*ft_strncpy(char *dest, char *src, unsigned int n)
 	return (dest);
 }
 
-static size_t ft_alloc_len(unsigned int start, size_t len, size_t s_len)
+static size_t	ft_alloc_len(unsigned int start, size_t len, size_t s_len)
 {
 	size_t	alloc_len;
-	
+
 	if (start + len > s_len)
 	{
 		alloc_len = s_len - start;

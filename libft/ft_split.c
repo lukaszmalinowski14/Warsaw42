@@ -6,31 +6,15 @@
 /*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 14:52:57 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/16 23:26:07 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:02:23 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
-static void *ft_memcpy(void *dest, const void *src, size_t n)
+static char	**free_splits(char **split, size_t n)
 {
-	size_t i;
-
-	if (!dest && !src)
-		return (NULL);
-	i = 0;
-	while (i < n)
-	{
-		*(char *)(dest + i) = *(char *)(src + i);
-		i++;
-	}
-	return (dest);
-}
-
-static char **free_splits(char **split, size_t n)
-{
-	size_t i;
+	size_t	i;
 
 	if (split != NULL)
 	{
@@ -46,10 +30,10 @@ static char **free_splits(char **split, size_t n)
 	return (NULL);
 }
 
-static size_t count_splits(const char *str, char c)
+static size_t	count_splits(const char *str, char c)
 {
-	size_t result;
-	size_t i;
+	size_t	result;
+	size_t	i;
 
 	result = 0;
 	i = 0;
@@ -62,9 +46,9 @@ static size_t count_splits(const char *str, char c)
 	return (result);
 }
 
-static size_t get_split_len(char *str, char c)
+static size_t	get_split_len(char *str, char c)
 {
-	size_t len;
+	size_t	len;
 
 	len = 0;
 	while (str[len] != '\0' && str[len] != c)
@@ -72,10 +56,10 @@ static size_t get_split_len(char *str, char c)
 	return (len);
 }
 
-static char *get_split(const char *str, size_t *pos, char c)
+static char	*get_split(const char *str, size_t *pos, char c)
 {
-	char *result;
-	size_t result_l;
+	char	*result;
+	size_t	result_l;
 
 	while (str[*pos] == c)
 		(*pos)++;
@@ -89,12 +73,12 @@ static char *get_split(const char *str, size_t *pos, char c)
 	return (result);
 }
 
-char **ft_split(const char *str, char c)
+char	**ft_split(const char *str, char c)
 {
-	char **split;
-	size_t split_n;
-	size_t i;
-	size_t pos;
+	char	**split;
+	size_t	split_n;
+	size_t	i;
+	size_t	pos;
 
 	if (str == NULL)
 		return (NULL);

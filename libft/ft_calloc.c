@@ -6,7 +6,7 @@
 /*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:20:35 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/16 18:29:40 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:03:02 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ static void	*ft_memset(void *ptr, int value, size_t n)
 	byte_ptr = (unsigned char *)ptr;
 	byte_value = (unsigned char)value;
 	i = 0;
-
 	while (i < n)
 	{
 		byte_ptr[i] = byte_value;
 		i++;
 	}
-
 	return (ptr);
 }
 

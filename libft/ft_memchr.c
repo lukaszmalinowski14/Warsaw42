@@ -6,7 +6,7 @@
 /*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:35:18 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/16 17:14:37 by lmalinow         ###   ########.fr       */
+/*   Updated: 2024/12/17 14:58:17 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	*ft_memchr(const void *s, int c, size_t n)
 
 	byte = (unsigned char)c;
 	s_ptr = (unsigned char *)s;
-
 	while (n--)
 	{
 		if (byte == *s_ptr)
