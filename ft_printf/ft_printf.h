@@ -6,7 +6,7 @@
 /*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:42:38 by lmalinow          #+#    #+#             */
-/*   Updated: 2025/01/05 18:17:53 by lmalinow         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:34:41 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_print
 
 typedef struct s_direc
 {
-	t_flag f;
+	t_flag flag;
 	size_t w;
 	size_t p;
 	char text;
@@ -61,6 +61,7 @@ void ft_write(void *buf, size_t len, t_print *print);
 void ft_printchar(t_direc args, t_print *print);
 void ft_printstr(t_direc args, t_print *print);
 void ft_printnbr(t_direc direc, t_print *print);
+void ft_printnbr_sec(t_direc result, t_print *print, t_uint u_number, size_t len);
 void ft_printunbr(t_direc direc, t_print *print, char *base, char *prefix);
 void ft_putchar(char c, t_print *print);
 void ft_printptr(t_direc direc, t_print *print);
@@ -68,8 +69,12 @@ void ft_parse_text(t_print *print);
 t_direc ft_parse_format_specifier(t_print *print);
 void ft_print_arg(t_direc args, t_print *print);
 void ft_specifier(t_print *print);
-
-
 int ft_printf(char const *f, ...);
+
+void ft_add_padding(char c, size_t w, size_t len, t_print *print);
+void ft_parseflags(t_direc *result, t_print *print);
+t_uint ft_abs(int i);
+size_t ft_count_nbr_length(unsigned long num, size_t prec, size_t base_len);
+void ft_parsewidth_precision(t_direc *result, t_print *print);
 
 #endif
