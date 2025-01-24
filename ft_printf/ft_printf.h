@@ -6,7 +6,7 @@
 /*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:42:38 by lmalinow          #+#    #+#             */
-/*   Updated: 2025/01/05 23:34:41 by lmalinow         ###   ########.fr       */
+/*   Updated: 2025/01/06 20:06:32 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ void ft_parseflags(t_direc *result, t_print *print);
 t_uint ft_abs(int i);
 size_t ft_count_nbr_length(unsigned long num, size_t prec, size_t base_len);
 void ft_parsewidth_precision(t_direc *result, t_print *print);
+void ft_printnbr_sec(t_direc result, t_print *print, t_uint u_number, size_t len);
 
 #endif

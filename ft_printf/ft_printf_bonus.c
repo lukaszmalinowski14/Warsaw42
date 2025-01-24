@@ -6,7 +6,7 @@
 /*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:38:23 by lmalinow          #+#    #+#             */
-/*   Updated: 2025/01/05 23:43:23 by lmalinow         ###   ########.fr       */
+/*   Updated: 2025/01/08 19:16:52 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //to remove
  //### TO REMOVE ###########
- int len(long nb)
+int len(long nb)
 {
  	int i;
 
@@ -83,11 +83,11 @@ void ft_write(void *buf, size_t len, t_print *print)
 
 void ft_printchar(t_direc args, t_print *print)
 {
-	char c;
-
-	c = va_arg(print->arguments, int);
-	ft_write(&c, 1, print);
-	(void)args;
+	if (!(args.flag & FLAG_MINUS))
+		ft_add_padding(' ', args.w, 1, print);
+	ft_putchar(va_arg(print->arguments, int), print);
+	if (args.flag & FLAG_MINUS)
+		ft_add_padding(' ', args.w, 1, print);
 }
 
 void ft_putchar(char c, t_print *print)
@@ -154,10 +154,12 @@ void ft_printnbr_sec(t_direc result, t_print *print, t_uint u_number, size_t len
 
 	str = ft_itoa(u_number);
 	if (ft_strlen(str) < len)
+	{
 		if ((result.flag & FLAG_PLUS) || (result.flag & FLAG_SPACE))
 			ft_add_padding('0', len - 1, ft_strlen(str), print);
 		else
 			ft_add_padding('0', len, ft_strlen(str), print);
+	}
 	ft_write(str, ft_strlen(str), print);
 	if (result.flag & FLAG_MINUS)
 		ft_add_padding(' ', result.w, len, print);
@@ -181,10 +183,14 @@ void ft_printunbr(t_direc result, t_print *print, char *base, char *prefix)
 	if (!(result.flag & FLAG_MINUS) && (result.flag & FLAG_ZERO))
 		ft_add_padding('0', result.w, len, print);
 	if ( lenx < len)
+	{
 		if (result.flag & FLAG_ALTER)
 			ft_add_padding('0', len - ft_strlen(prefix), lenx, print);
 		else
 			ft_add_padding('0', len, lenx, print);
+	}
+	if (result.p == 0 && number == 0)
+		return;
 	ft_putnbr(number, base, result.p, print);
 	if (result.flag & FLAG_MINUS)
 		ft_add_padding(' ', result.w, len, print);
@@ -363,35 +369,43 @@ int	ft_printf(char const *f, ...)
 
 int	main(void)
 {
-	int a = 4;
-	ft_printf("First arg: |%-10d|\n", 123); //"|123       |"
-	ft_printf("|%010d|\n", 42);				//"|0000000042|"
-	ft_printf("|%-010d|\n", 42);			// "|42        |" (flag `-` overwrite `0`)
-	printf("|% d|\n", 42);				// "| 42|"
-	ft_printf("|% d|\n", 42);				// "| 42|"
-	printf("|% d|\n", -42);				// "|-42|"
-	ft_printf("|% d|\n", -42);				// "|-42|"
-	ft_printf("|%+ d|\n", 42);				// "|+42|"
-	ft_printf("|%+d|\n", 42);				// "|+42|"
-	ft_printf("|%+d|\n", -42);				// "|-42|"
-	ft_printf("|%#x|\n", 134);				// Wynik: "|0x86|"
-	ft_printf("|%#X|\n", 10);				// Wynik: "|0XA|"
-	ft_printf("|%#x|\n", 134);				// Wynik: "|0x86|"
-	ft_printf("|%#X|\n", 10);				// Wynik: "|0XA|"
-	ft_printf("|%.3x|\n", 255);		// Wynik: "|0ff|"
-	ft_printf("|%.3x|\n", 255); // Wynik: "|0ff|"
-	printf("|%.5d|\n", 42);	// Wynik: "|00042|"
-	ft_printf("|%.5d|\n", 42);	// Wynik: "|00042|"
-	ft_printf("|%.5s|\n", "Hello, World!"); // Wynik: "|Hello|"
-	ft_printf("|%.10s|\n", "Hi!");			// Wynik: "|Hi!|"
-	ft_printf("|%10.5s|\n", "Hello, World!"); // Wynik: "|     Hello|"
-	printf("|%#.5x|\n", 255);			  // Wynik: "|0x000ff|"
-	ft_printf("|%#.5x|\n", 255);			  // Wynik: "|0x000ff|"
-	printf("|%+.3d|\n", 42);				  // Wynik: "|+042|"
-	ft_printf("|%+.3d|\n", 42);				  // Wynik: "|+042|"
-	ft_printf("|%10.4x|\n", 255);			  // Wynik: "|      00ff|"
-	ft_printf("|%#10.3x|\n", 255);			  // Wynik: "|     0x0ff|"
-	ft_printf("|%+10.5d|\n", 123);			  // Wynik: "|    +00123|"
+	printf("|%5.0X|\n", 0);
+	ft_printf("|%5.0X|\n", 0);
+	printf("|%16s|\n", "nark nark");
+	ft_printf("|%16s|\n", "nark nark");
+	printf("%.03s", NULL);
+	printf("elo \n");
+	// printf("%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c\n", (char)1, (char)2);
+	// ft_printf("%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c\n", (char)1, (char)2);
+	//  int a = 4;
+	//  ft_printf("First arg: |%-10d|\n", 123); //"|123       |"
+	//  ft_printf("|%010d|\n", 42);				//"|0000000042|"
+	//  ft_printf("|%-010d|\n", 42);			// "|42        |" (flag `-` overwrite `0`)
+	//  printf("|% d|\n", 42);				// "| 42|"
+	//  ft_printf("|% d|\n", 42);				// "| 42|"
+	//  printf("|% d|\n", -42);				// "|-42|"
+	//  ft_printf("|% d|\n", -42);				// "|-42|"
+	//  ft_printf("|%+ d|\n", 42);				// "|+42|"
+	//  ft_printf("|%+d|\n", 42);				// "|+42|"
+	//  ft_printf("|%+d|\n", -42);				// "|-42|"
+	//  ft_printf("|%#x|\n", 134);				// Wynik: "|0x86|"
+	//  ft_printf("|%#X|\n", 10);				// Wynik: "|0XA|"
+	//  ft_printf("|%#x|\n", 134);				// Wynik: "|0x86|"
+	//  ft_printf("|%#X|\n", 10);				// Wynik: "|0XA|"
+	//  ft_printf("|%.3x|\n", 255);		// Wynik: "|0ff|"
+	//  ft_printf("|%.3x|\n", 255); // Wynik: "|0ff|"
+	//  printf("|%.5d|\n", 42);	// Wynik: "|00042|"
+	//  ft_printf("|%.5d|\n", 42);	// Wynik: "|00042|"
+	//  ft_printf("|%.5s|\n", "Hello, World!"); // Wynik: "|Hello|"
+	//  ft_printf("|%.10s|\n", "Hi!");			// Wynik: "|Hi!|"
+	//  ft_printf("|%10.5s|\n", "Hello, World!"); // Wynik: "|     Hello|"
+	//  printf("|%#.5x|\n", 255);			  // Wynik: "|0x000ff|"
+	//  ft_printf("|%#.5x|\n", 255);			  // Wynik: "|0x000ff|"
+	//  printf("|%+.3d|\n", 42);				  // Wynik: "|+042|"
+	//  ft_printf("|%+.3d|\n", 42);				  // Wynik: "|+042|"
+	//  ft_printf("|%10.4x|\n", 255);			  // Wynik: "|      00ff|"
+	//  ft_printf("|%#10.3x|\n", 255);			  // Wynik: "|     0x0ff|"
+	//  ft_printf("|%+10.5d|\n", 123);			  // Wynik: "|    +00123|"
 
 	return (0);
 }

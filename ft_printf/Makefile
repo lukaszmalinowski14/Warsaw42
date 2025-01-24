@@ -5,12 +5,13 @@ CFLAGS = -Wall -Wextra -Werror
 SRCS =  ft_printf.c\
 	print_func.c\
 	write_out.c\
+	print_libft.c\
 
 OBJS =$(SRCS:.c=.o)
 
 BONUS = ft_printf_bonus.c\
-	print_func_bonus.c\
-	write_out_bonus.c\
+	#print_func_bonus.c\
+	#write_out_bonus.c\
 
 BONUS_OBJS = $(BONUS:.c=.o)
 
