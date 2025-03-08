@@ -6,29 +6,13 @@
 /*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:20:35 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/17 15:03:02 by lmalinow         ###   ########.fr       */
+/*   Updated: 2025/02/23 20:08:43 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stddef.h>
-
-static void	*ft_memset(void *ptr, int value, size_t n)
-{
-	unsigned char	*byte_ptr;
-	unsigned char	byte_value;
-	size_t			i;
-
-	byte_ptr = (unsigned char *)ptr;
-	byte_value = (unsigned char)value;
-	i = 0;
-	while (i < n)
-	{
-		byte_ptr[i] = byte_value;
-		i++;
-	}
-	return (ptr);
-}
+#include "libft.h"
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {

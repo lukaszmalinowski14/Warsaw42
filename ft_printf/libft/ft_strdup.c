@@ -6,22 +6,13 @@
 /*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:42:11 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/16 18:08:04 by lmalinow         ###   ########.fr       */
+/*   Updated: 2025/02/23 20:17:00 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stddef.h>
-
-static size_t	ft_strlen(char *str)
-{
-	size_t	len;
-
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
-}
+#include "libft.h"
 
 char	*ft_strdup(const char *s)
 {

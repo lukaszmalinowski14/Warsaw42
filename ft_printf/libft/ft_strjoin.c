@@ -6,37 +6,11 @@
 /*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 20:39:39 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/17 15:16:46 by lmalinow         ###   ########.fr       */
+/*   Updated: 2025/02/23 20:29:01 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
-
-static size_t	ft_strlen(char *str)
-{
-	size_t	len;
-
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
-}
-
-static void	*ft_memcpy(void *dest, const void *src, size_t len)
-{
-	size_t	i;
-
-	if (dest == NULL && src == NULL && len != 0)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
-		i++;
-	}
-	return (dest);
-}
+#include "libft.h"
 
 char	*ft_strjoin(const char *s1, const char *s2)
 {

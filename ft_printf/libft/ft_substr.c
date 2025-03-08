@@ -6,7 +6,7 @@
 /*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 20:21:04 by lmalinow          #+#    #+#             */
-/*   Updated: 2024/12/17 14:50:26 by lmalinow         ###   ########.fr       */
+/*   Updated: 2025/02/23 20:12:35 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
-static size_t	ft_strlen(char *str)
-{
-	size_t	len;
-
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
-}
+#include "libft.h"
 
 static char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {

@@ -6,7 +6,7 @@
 /*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 18:39:39 by lmalinow          #+#    #+#             */
-/*   Updated: 2025/01/05 18:43:27 by lmalinow         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:40:42 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	ft_printnbr(t_direc direc, t_print *print)
 	num = va_arg(print->arguments, int);
 	str = ft_itoa(num);
 	ft_write(str, ft_strlen(str), print);
+	free(str);
 	(void)direc;
 }
 
@@ -55,9 +56,22 @@ void	ft_printunbr(t_direc direc, t_print *print, char *base, char *prefix)
 	(void)prefix;
 }
 
-void	ft_printptr(t_direc direc, t_print *print)
+// void	ft_printptr(t_direc direc, t_print *print)
+// {
+// 	ft_write(PRE_HEXL, ft_strlen(PRE_HEXL), print);
+// 	ft_putnbr((unsigned long)va_arg(print->arguments, void *), BASE_HEXL, 0, print);
+// 	(void)direc;
+// }
+void ft_printptr(t_direc direc, t_print *print)
 {
+	unsigned long arg = (unsigned long)va_arg(print->arguments, void *);
+	if (!arg)
+	{
+		print->char_count += (write(1, "(nil)", sizeof(char) * 5));
+		return;
+	}
 	ft_write(PRE_HEXL, ft_strlen(PRE_HEXL), print);
-	ft_putnbr((unsigned long)va_arg(print->arguments, void *), BASE_HEXL, 0, print);
+	// ft_putnbr((unsigned long)va_arg(print->arguments, void *), BASE_HEXL, 0, print);
+	ft_putnbr(arg, BASE_HEXL, 0, print);
 	(void)direc;
 }

@@ -1,53 +1,59 @@
 NAME = libftprintf.a
+GREEN = \033[0;32m
+RED = \033[0;31m
+RESET = \033[0m
+# **Ścieżka do biblioteki libft**
+LIBFT_PATH = ./libft
+LIBFT = ${LIBFT_PATH}/libft.a
+# **Ścieżka do pliku nagłówkowego ft_printf.h**
+LIBFTPRINTF_PATH = .
+LIBFTPRINTF = ${LIBFTPRINTF_PATH}/ft_printf.h
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Werror -Wextra -I. -I${LIBFT_PATH} # **Dodano flagi -I dołączenia katalogów**
+REMOVE = rm -f
 
-SRCS =  ft_printf.c\
-	print_func.c\
-	write_out.c\
-	print_libft.c\
+# **Pliki źródłowe ft_printf**
 
-OBJS =$(SRCS:.c=.o)
+SRCS = ft_printf.c \
+       print_func.c \
+       print_libft.c \
+       write_out.c
 
-BONUS = ft_printf_bonus.c\
-	#print_func_bonus.c\
-	#write_out_bonus.c\
+OBJS = $(SRCS:.c=.o)
 
-BONUS_OBJS = $(BONUS:.c=.o)
+all: ${NAME}
 
-LIBFT_DIR = libft
-LIBFT = $(LIBFT_DIR)/libft.a
-LIBFT_INCLUDES = -I$(LIBFT_DIR)
+${NAME}: ${OBJS} ${LIBFT}
+	@echo "\n$(NAME): $(GREEN)$(NAME) was created$(RESET)"
+	ar -rcs ${NAME} ${OBJS}
+	@echo
 
-all: $(LIBFT) $(NAME)
+${LIBFT}:
+	@echo
+	make bonus -C ${LIBFT_PATH}
+	cp ${LIBFT} ${NAME}
 
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+.c.o:
+	@echo "\n$(NAME): $(GREEN)object files were created$(RESET)"
+	${CC} -c ${FLAGS} $< -o ${@:.c=.o}
 
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+clean:
+	make clean -C ${LIBFT_PATH}
+	@echo "\n$(NAME): $(RED)object files were deleted$(RESET)"
+	${REMOVE} ${OBJS}
+	@echo
 
-%.o: %.c
-	$(CC) $(CFLAGS) $(LIBFT_INCLUDES) -c $< -o $@
+fclean:
+	make fclean -C ${LIBFT_PATH}
+	@echo "\n$(NAME): $(RED)object files were deleted$(RESET)"
+	${REMOVE} ${OBJS}
+	@echo "\n$(NAME): $(RED)$(NAME) was deleted$(RESET)"
+	${REMOVE} ${NAME}
+	@echo
 
-clean: 
-	rm -f $(OBJS) $(BONUS_OBJS)
-	$(MAKE) -C $(LIBFT_DIR) clean
+re : fclean all
 
-fclean: clean
-	rm -f $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
+norm:
+	norminette
 
-re: fclean all
-
-bonus: $(BONUS_OBJS)
-	ar rcs $(NAME) $(BONUS_OBJS)
-
-$(BONUS_OBJS): %.o: %.c
-	$(CC) $(CFLAGS) $(LIBFT_INCLUDES) -c $< -o $@
-
-.PHONY: all clean fclean re bonus so
-
-
-
-
+.PHONY: all clean fclean re norm

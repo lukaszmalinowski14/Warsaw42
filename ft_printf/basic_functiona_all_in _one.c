@@ -123,8 +123,12 @@ void ft_printunbr(t_direc direc, t_print *print, char *base, char *prefix)
 
 void ft_printptr(t_direc direc, t_print *print)
 {
+	unsigned long arg = (unsigned long)va_arg(print->arguments, void *);
+	if (!arg)
+		return print->char_count+=(write(1, "(nil)", sizeof(char) * 5));
 	ft_write(PRE_HEXL, ft_strlen(PRE_HEXL), print);
-	ft_putnbr((unsigned long)va_arg(print->arguments, void *), BASE_HEXL, 0, print);
+	//ft_putnbr((unsigned long)va_arg(print->arguments, void *), BASE_HEXL, 0, print);
+	ft_putnbr(arg, BASE_HEXL, 0, print);
 	(void)direc;
 }
 
@@ -209,6 +213,12 @@ int ft_printf(char const *f, ...)
 
 int	main(void)
 {
+	int test = 5;
+	int a = ft_printf("%c, %c \n", 'c', 'd');
+	int aa = ft_printf("%s \n", "test");
+	int aaa = ft_printf("%p \n", (void *)test);
+	int aaaa = ft_printf("%d \n", 45);
+	int five = ft_printf("%u \n", 24);
 	// int a = 4;
 	// ft_printf("First arg: %c\n", 'a');
 	// ft_printf("First arg: %s\n", "Hello World!");
@@ -225,6 +235,8 @@ int	main(void)
 	// ft_printf("First arg: %p\n", &a);
 	// ft_printf("First %% arg: %s\n", "Hello!");
 	// ft_printf("First arg: %q\n", "Hello!");
+	int b =ft_printf(" %p %p \n", (void *)0, (void *)0);
+	printf("%d \n", a);
 	printf("%-x\n", 42);
 	ft_printf("%-x\n", 42);
 
