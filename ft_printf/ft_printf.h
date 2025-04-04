@@ -6,7 +6,7 @@
 /*   By: lmalinow <lmalinow@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:42:38 by lmalinow          #+#    #+#             */
-/*   Updated: 2025/02/25 21:07:30 by lmalinow         ###   ########.fr       */
+/*   Updated: 2025/03/09 15:13:00 by lmalinow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include <ctype.h>
 #include <fcntl.h>
 #include <stdarg.h>
-//#include "libft.h"
+#include "libft/libft.h"
 
 #define BASE_DEC "0123456789"
 #define BASE_HEXL "0123456789abcdef"
